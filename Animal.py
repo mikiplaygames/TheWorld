@@ -1,7 +1,7 @@
-import Organism as Organism
+import Organism
 
 
-class Animal(Organism):
+class Animal(Organism.Organism):
 
     strenght = 0
 

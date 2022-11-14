@@ -1,7 +1,8 @@
-import Classes.World as World
+import World as World
 
 class Organism:
 
+    image_path: str
     strength: int
     iniciative: int
     x: int
