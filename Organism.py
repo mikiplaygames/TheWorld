@@ -1,7 +1,7 @@
 import World as World
 
-class Organism:
 
+class Organism:
     image_path: str
     strength: int
     iniciative: int
@@ -16,6 +16,5 @@ class Organism:
     def collision(self, attacker):
         pass
 
-    def report(self,  message: str):
-        # self.world.log.message(message)
-        pass
+    def report(self, message: str):
+        self.world.log = self.world.log + message + "|"

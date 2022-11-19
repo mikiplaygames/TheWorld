@@ -41,4 +41,3 @@ class SHEEP(Animal.Animal):
                 del self
         else:
             self.breed()
-

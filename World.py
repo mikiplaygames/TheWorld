@@ -14,7 +14,7 @@ class WORLD:
     rangeX: int
     rangeH: int
 
-    log = None
+    log: str = ""
 
     map = []
 
@@ -48,6 +48,3 @@ class WORLD:
                 else:
                     self.map[x][y] = None
                 self.organisms.append(self.map[x][y])
-
-
-
