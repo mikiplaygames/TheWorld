@@ -12,6 +12,9 @@ class Animal(Organism.Organism):
     def draw(self):
         pass
 
+    def breed(self):
+        pass
+
     def __init__(self, x, y, world):
         self.x = x
         self.y = y
