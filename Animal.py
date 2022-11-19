@@ -24,7 +24,7 @@ class Animal(Organism.Organism):
 
     def breed(self, attacker):
         rand = random.randrange(0, 10)
-        if rand < 2:
+        if rand < 2 and self.lifeSpan <= self.defaultLifeSpan * 0.8:
             self.report(str(type(self)).split(".")[-1].split("'")[0] + " created a child")
             self.world.organisms.append(type(self)(self.x, self.y, self.world))
             self.world.map[self.x][self.y] = self.world.organisms[-1]
@@ -42,30 +42,6 @@ class Animal(Organism.Organism):
 
     def __repr__(self):
         return self.__str__()
-
-    def GetStrenght(self):
-        return self.strenght
-
-    def GetX(self):
-        return self.x
-
-    def GetY(self):
-        return self.y
-
-    def GetWorld(self):
-        return self.world
-
-    def SetX(self, x):
-        self.x = x
-
-    def SetY(self, y):
-        self.y = y
-
-    def SetWorld(self, world):
-        self.world = world
-
-    def SetStrenght(self, strenght):
-        self.strenght = strenght
 
     def GetOrganism(self, x, y):
         return self.world.map[x][y]

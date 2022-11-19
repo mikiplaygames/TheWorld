@@ -10,9 +10,9 @@ class FOX(Animal.Animal):
     moveChance = 100
 
     def currentImage(self):
-        if self.defaultLifeSpan / 2 < self.lifeSpan <= self.defaultLifeSpan:
+        if self.defaultLifeSpan * 0.8 < self.lifeSpan <= self.defaultLifeSpan:
             return "resources/lis1.png"
-        elif self.defaultLifeSpan / 5 <= self.lifeSpan <= self.defaultLifeSpan / 2:
+        elif self.defaultLifeSpan * 0.1 <= self.lifeSpan <= self.defaultLifeSpan * 0.8:
             return "resources/lis2.png"
         else:
             return "resources/lis3.png"

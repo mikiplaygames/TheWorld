@@ -10,9 +10,9 @@ class SHEEP(Animal.Animal):
     moveChance = 50
 
     def currentImage(self):
-        if self.defaultLifeSpan / 2 < self.lifeSpan <= self.defaultLifeSpan:
+        if self.defaultLifeSpan * 0.8 < self.lifeSpan <= self.defaultLifeSpan:
             return "resources/shep1.png"
-        elif self.defaultLifeSpan / 5 <= self.lifeSpan <= self.defaultLifeSpan / 2:
+        elif self.defaultLifeSpan * 0.1 <= self.lifeSpan <= self.defaultLifeSpan * 0.8:
             return "resources/shep2.png"
         else:
             return "resources/shep3.png"

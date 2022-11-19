@@ -20,7 +20,7 @@ class WORLD:
 
     def NextRound(self):
         for i in self.organisms:
-            if i != None:
+            if i is not None:
                 i.action()
 
     def RandomizeWorld(self, w: int, h: int):
@@ -38,10 +38,10 @@ class WORLD:
         """
         for x in range(0, w):
             for y in range(0, h):
-                rand = random.randrange(0, 1000)
+                rand = random.randrange(0, 500)
                 if rand < 25:
                     self.map[x][y] = Sheep.SHEEP(x, y, self)
-                elif 24 < rand < 28:
+                elif 24 < rand < 39:
                     self.map[x][y] = Fox.FOX(x, y, self)
                 else:
                     self.map[x][y] = None
