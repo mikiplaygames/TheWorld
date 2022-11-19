@@ -36,8 +36,11 @@ class FOX(Animal.Animal):
         if not isinstance(attacker, type(self)):
             if attacker == self:
                 return
+
+            attackName = str(type(attacker)).split(".")[-1].split("'")[0]
+            defenseName = str(type(self)).split(".")[-1].split("'")[0]
             if self.strength > attacker.strength:
-                self.report(str(self) + " killed " + str(attacker))
+                self.report(defenseName + " killed " + attackName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[attacker.x][attacker.y] = None
                 self.world.map[self.x][self.y] = None
                 self.x = attacker.x
@@ -47,7 +50,7 @@ class FOX(Animal.Animal):
                 del attacker
 
             else:
-                self.report(str(attacker) + " killed " + str(self))
+                self.report(attackName + " killed " + defenseName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[self.x][self.y] = None
                 self.world.organisms.remove(self)
                 del self

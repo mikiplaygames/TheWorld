@@ -13,7 +13,7 @@ class Animal(Organism.Organism):
         pass
 
     def breed(self):
-        pass
+        self.report(str(type(self)).split(".")[-1].split("'")[0] + " fucked")
 
     def __init__(self, x, y, world):
         self.x = x

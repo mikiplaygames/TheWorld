@@ -1,3 +1,5 @@
+import time
+
 import pygame
 
 import Button
@@ -16,9 +18,8 @@ class THEWORLD:
 
     pygame.init()
 
-    buttonSpace = 40
     s_width = textureSize * WIDTH + logBoxSize
-    s_height = textureSize * HEIGHT + buttonSpace
+    s_height = textureSize * HEIGHT
     screen = pygame.display.set_mode((s_width, s_height))
     screen.blit(pygame.image.load('resources/bg.png'), (0, 0))
     font = pygame.font.SysFont('Arial', 20)
@@ -34,7 +35,8 @@ class THEWORLD:
 w = THEWORLD()
 pygame.display.set_caption("THE WORLD")
 w.draw()
-bt = Button.BUTTON(w.s_width / 4, w.s_height - 40, pygame.image.load('resources/button.png'), 1)
+nextBt = Button.BUTTON(w.s_width -w.logBoxSize, w.s_height - 40, pygame.image.load('resources/button.png'), 1)
+autoBt = Button.BUTTON(w.s_width - w.logBoxSize/4, w.s_height - 40, pygame.image.load('resources/auto.png'), 1)
 running = True
 
 
@@ -48,10 +50,21 @@ def blit_text():
         location += 20
         w.screen.blit(text, textRect)
 
+auto = False
 
 while running:
 
-    if bt.draw(w.screen):
+    if nextBt.draw(w.screen):
+        w.theWorld.NextRound()
+        w.draw()
+        blit_text()
+        w.theWorld.log = ""
+
+    if autoBt.draw(w.screen):
+        auto = not auto
+
+    if auto:
+        time.sleep(0.1)
         w.theWorld.NextRound()
         w.draw()
         blit_text()
