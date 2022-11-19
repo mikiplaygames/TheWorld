@@ -31,11 +31,7 @@ class WORLD:
         for x in range(0, w):
             for y in range(0, h):
                 self.map[x][y] = None
-        """
-        for i in range(0, 8):
-            self.map[i][i] = Sheep.SHEEP(i, i, self)
-            self.organisms.append(self.map[i][i])
-        """
+
         for x in range(0, w):
             for y in range(0, h):
                 rand = random.randrange(0, 500)

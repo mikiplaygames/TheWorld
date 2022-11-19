@@ -29,7 +29,7 @@ class Animal(Organism.Organism):
             self.world.organisms.append(type(self)(self.x, self.y, self.world))
             self.world.map[self.x][self.y] = self.world.organisms[-1]
         else:
-            self.report(str(type(self)).split(".")[-1].split("'")[0] + " got railed")
+            self.report(str(type(self)).split(".")[-1].split("'")[0] + " got finessed")
 
     def __init__(self, x, y, world):
         self.x = x

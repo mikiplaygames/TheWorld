@@ -1,9 +1,15 @@
-import Classes.Organism as Organism
+import random
+
+import Organism as Organism
 
 class Plant(Organism):
-
-    iniciative = 0
+    spreadChance: int
 
     def action(self):
-        pass
-        #chance to spread
+        self.spread()
+        self.subaction()
+
+    def spread(self):
+        if random.randrange(0, 100) < self.spreadChance:
+            self.world.organisms.append(type(self)(self.x, self.y, self.world))
+            self.world.map[self.x][self.y] = self.world.organisms[-1]
