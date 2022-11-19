@@ -11,6 +11,9 @@ class Organism:
     world: World
 
     def action(self):
+        self.subaction()
+
+    def subaction(self):
         pass
 
     def collision(self, attacker):

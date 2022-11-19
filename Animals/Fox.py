@@ -3,12 +3,21 @@ import random
 
 
 class FOX(Animal.Animal):
-    image_path = "resources/lis.png"
     strength = 9
+    defaultLifeSpan = 90
+    lifeSpan = defaultLifeSpan
     iniciative = 5
     moveChance = 100
 
-    def action(self):
+    def currentImage(self):
+        if self.defaultLifeSpan / 2 < self.lifeSpan <= self.defaultLifeSpan:
+            return "resources/lis1.png"
+        elif self.defaultLifeSpan / 5 <= self.lifeSpan <= self.defaultLifeSpan / 2:
+            return "resources/lis2.png"
+        else:
+            return "resources/lis3.png"
+
+    def subaction(self):
         found = False
         while not found:
             yy = self.y + random.randrange(-1, 2)
@@ -54,5 +63,5 @@ class FOX(Animal.Animal):
                 self.world.map[self.x][self.y] = None
                 self.world.organisms.remove(self)
                 del self
-        else:
-            self.breed()
+        elif attacker != self:
+            self.breed(attacker)

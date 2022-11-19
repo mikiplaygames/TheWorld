@@ -1,13 +1,23 @@
 import Animal
 import random
 
+
 class SHEEP(Animal.Animal):
-    image_path = "resources/shep.png"
     strength = 4
+    defaultLifeSpan = 130
+    lifeSpan = defaultLifeSpan
     iniciative = 4
     moveChance = 50
 
-    def action(self):
+    def currentImage(self):
+        if self.defaultLifeSpan / 2 < self.lifeSpan <= self.defaultLifeSpan:
+            return "resources/shep1.png"
+        elif self.defaultLifeSpan / 5 <= self.lifeSpan <= self.defaultLifeSpan / 2:
+            return "resources/shep2.png"
+        else:
+            return "resources/shep3.png"
+
+    def subaction(self):
         if random.randrange(1, 101) <= self.moveChance:
             yy = self.y + random.randrange(-1, 2)
             xx = self.x + random.randrange(-1, 2)
@@ -42,5 +52,5 @@ class SHEEP(Animal.Animal):
                 self.world.map[self.x][self.y] = None
                 self.world.organisms.remove(self)
                 del self
-        else:
-            self.breed()
+        elif attacker != self:
+            self.breed(attacker)

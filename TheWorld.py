@@ -29,14 +29,14 @@ class THEWORLD:
         self.screen.blit(pygame.image.load('resources/bg.png'), (0, 0))
         for i in self.theWorld.organisms:
             if i is not None:
-                self.screen.blit(pygame.image.load(i.image_path), (i.x * self.textureSize, i.y * self.textureSize))
+                self.screen.blit(pygame.image.load(i.currentImage()), (i.x * self.textureSize, i.y * self.textureSize))
 
 
 w = THEWORLD()
 pygame.display.set_caption("THE WORLD")
 w.draw()
-nextBt = Button.BUTTON(w.s_width -w.logBoxSize, w.s_height - 40, pygame.image.load('resources/button.png'), 1)
-autoBt = Button.BUTTON(w.s_width - w.logBoxSize/4, w.s_height - 40, pygame.image.load('resources/auto.png'), 1)
+nextBt = Button.BUTTON(w.s_width - w.logBoxSize, w.s_height - 40, pygame.image.load('resources/button.png'), 1)
+autoBt = Button.BUTTON(w.s_width - w.logBoxSize / 4, w.s_height - 40, pygame.image.load('resources/auto.png'), 1)
 running = True
 
 
@@ -49,6 +49,7 @@ def blit_text():
         textRect.center = (w.s_width - w.logBoxSize / 2, location)
         location += 20
         w.screen.blit(text, textRect)
+
 
 auto = False
 
