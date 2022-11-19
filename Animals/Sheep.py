@@ -43,9 +43,10 @@ class SHEEP(Animal.Animal):
                 self.world.map[self.x][self.y] = None
                 self.x = attacker.x
                 self.y = attacker.y
-                self.world.map[self.x][self.y] = self
-                self.world.organisms.remove(attacker)
-                del attacker
+                if attacker in self.world.organisms:
+                    self.world.map[self.x][self.y] = self
+                    self.world.organisms.remove(attacker)
+                    del attacker
 
             else:
                 self.report(attackName + " killed " + defenseName + " at " + str(self.x) + "," + str(self.y))

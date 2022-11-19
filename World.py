@@ -4,6 +4,7 @@ import random
 import Animal
 import Animals.Sheep as Sheep
 import Animals.Fox as Fox
+import Plants.Weed as Weed
 import Organism as Organism
 
 
@@ -39,6 +40,8 @@ class WORLD:
                     self.map[x][y] = Sheep.SHEEP(x, y, self)
                 elif 24 < rand < 39:
                     self.map[x][y] = Fox.FOX(x, y, self)
+                elif 39 <= rand < 50:
+                    self.map[x][y] = Weed.WEED(x, y, self)
                 else:
                     self.map[x][y] = None
                 self.organisms.append(self.map[x][y])
