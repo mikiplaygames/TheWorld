@@ -7,8 +7,8 @@ import World
 
 
 class THEWORLD:
-    WIDTH = 48
-    HEIGHT = 32
+    WIDTH = 24
+    HEIGHT = 24
     textureSize = 32
     logBoxSize = 400
 

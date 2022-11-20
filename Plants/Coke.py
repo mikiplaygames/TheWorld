@@ -3,17 +3,17 @@ import Organism
 import Plant
 
 
-class WEED(Plant.Plant):
-    strength = 1
-    spreadChance = 20
-    defaultLifeSpan = 50
+class COKE(Plant.Plant):
+    strength = 0
+    spreadChance = 10
+    defaultLifeSpan = 60
     lifeSpan = defaultLifeSpan
 
     def currentImage(self):
         if self.defaultLifeSpan * 0.4 < self.lifeSpan:
-            return "resources/weed1.png"
+            return "resources/koka1.png"
         else:
-            return "resources/weed2.png"
+            return "resources/koka2.png"
 
     def collision(self, attacker):
         if not isinstance(attacker, type(self)):

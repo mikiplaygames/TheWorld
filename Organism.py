@@ -10,6 +10,7 @@ class Organism:
     x: int
     y: int
     world: World
+    queueAction = False
 
     def action(self):
         self.subaction()

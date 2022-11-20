@@ -1,5 +1,6 @@
 import Animal
 import random
+import Plants.Coke as Coke
 
 
 class MOUSE(Animal.Animal):
@@ -38,25 +39,26 @@ class MOUSE(Animal.Animal):
             attackName = str(type(attacker)).split(".")[-1].split("'")[0]
             defenseName = str(type(self)).split(".")[-1].split("'")[0]
             if self.strength > attacker.strength:
-                self.report(defenseName + " killed " + attackName + " at " + str(self.x) + "," + str(self.y))
+                self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[attacker.x][attacker.y] = None
                 self.world.map[self.x][self.y] = None
                 self.x = attacker.x
                 self.y = attacker.y
                 if attacker in self.world.organisms:
+                    consumed = False
+                    if isinstance(attacker, Coke.COKE):
+                        self.queueAction = True
+                        self.report(defenseName + " consumed " + attackName + " at " + str(self.x) + "," + str(self.y))
+                        consumed = True
                     self.world.map[self.x][self.y] = self
-                    self.world.organisms.remove(attacker)
+                    if attacker in self.world.organisms:
+                        self.world.organisms.remove(attacker)
+                    if consumed == False:
+                        self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
                     del attacker
-            elif self.strength < attacker.strength:
-                f = self.GetNearestFree()
-                if f is not None:
-                    self.world.map[self.x][self.y] = None
-                    self.x = f[0]
-                    self.y = f[1]
-                    self.world.map[f[0]][f[1]] = self
 
             else:
-                self.report(attackName + " killed " + defenseName + " at " + str(self.x) + "," + str(self.y))
+                self.report(attackName + " devoured " + defenseName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[self.x][self.y] = None
                 self.world.organisms.remove(self)
                 del self

@@ -16,6 +16,9 @@ class Animal(Organism.Organism):
             return
         else:
             self.subaction()
+            if self.queueAction:
+                self.queueAction = False
+                self.subaction()
 
     def subaction(self):
         pass

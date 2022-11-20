@@ -1,5 +1,6 @@
 import Animal
 import random
+import Plants.Coke as Coke
 
 
 class SNAIL(Animal.Animal):
@@ -38,14 +39,21 @@ class SNAIL(Animal.Animal):
             attackName = str(type(attacker)).split(".")[-1].split("'")[0]
             defenseName = str(type(self)).split(".")[-1].split("'")[0]
             if self.strength > attacker.strength:
-                self.report(defenseName + " killed " + attackName + " at " + str(self.x) + "," + str(self.y))
+                self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[attacker.x][attacker.y] = None
                 self.world.map[self.x][self.y] = None
                 self.x = attacker.x
                 self.y = attacker.y
                 if attacker in self.world.organisms:
+                    consumed = True
+                    if isinstance(attacker, Coke.COKE):
+                        self.queueAction = True
+                        self.report(defenseName + " consumed " + attackName + " at " + str(self.x) + "," + str(self.y))
+                        consumed = True
                     self.world.map[self.x][self.y] = self
                     self.world.organisms.remove(attacker)
+                    if consumed == False:
+                        self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
                     del attacker
             elif attacker.strength < 2:
                 return
@@ -53,12 +61,12 @@ class SNAIL(Animal.Animal):
                 if random.randrange(1, 101) < 61:
                     return
                 else:
-                    self.report(attackName + " killed " + defenseName + " at " + str(self.x) + "," + str(self.y))
+                    self.report(attackName + " devoured " + defenseName + " at " + str(self.x) + "," + str(self.y))
                     self.world.map[self.x][self.y] = None
                     self.world.organisms.remove(self)
                     del self
             else:
-                self.report(attackName + " killed " + defenseName + " at " + str(self.x) + "," + str(self.y))
+                self.report(attackName + " devoured " + defenseName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[self.x][self.y] = None
                 self.world.organisms.remove(self)
                 del self
