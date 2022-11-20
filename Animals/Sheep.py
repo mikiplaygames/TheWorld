@@ -8,6 +8,7 @@ class SHEEP(Animal.Animal):
     lifeSpan = defaultLifeSpan
     iniciative = 4
     moveChance = 50
+    breedChance = 50
 
     def currentImage(self):
         if self.defaultLifeSpan * 0.8 < self.lifeSpan <= self.defaultLifeSpan:
@@ -21,7 +22,7 @@ class SHEEP(Animal.Animal):
         if random.randrange(1, 101) <= self.moveChance:
             yy = self.y + random.randrange(-1, 2)
             xx = self.x + random.randrange(-1, 2)
-            if yy in range(0, self.world.HEIGHT - 1) and xx in range(0, self.world.WIDTH):
+            if yy in range(0, self.world.HEIGHT) and xx in range(0, self.world.WIDTH):
                 if self.world.map[xx][yy] is None:
                     self.world.map[self.x][self.y] = None
                     self.x = xx

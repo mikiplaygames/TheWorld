@@ -12,7 +12,7 @@ class Plant(Organism.Organism):
         if self.lifeSpan <= 0:
             self.world.map[self.x][self.y] = None
             self.world.organisms.remove(self)
-            self.report(str(type(self)).split(".")[-1].split("'")[0] + " withered away at" + str(self.x) + "," + str(self.y))
+            self.report(str(type(self)).split(".")[-1].split("'")[0] + " withered away at " + str(self.x) + "," + str(self.y))
             del self
         else:
             self.subaction()

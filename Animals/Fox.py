@@ -4,10 +4,11 @@ import random
 
 class FOX(Animal.Animal):
     strength = 9
-    defaultLifeSpan = 90
+    defaultLifeSpan = 80
     lifeSpan = defaultLifeSpan
     iniciative = 5
     moveChance = 100
+    breedChance = 25
 
     def currentImage(self):
         if self.defaultLifeSpan * 0.8 < self.lifeSpan <= self.defaultLifeSpan:
@@ -22,12 +23,14 @@ class FOX(Animal.Animal):
         while not found:
             yy = self.y + random.randrange(-1, 2)
             xx = self.x + random.randrange(-1, 2)
-            if yy not in range(0, self.world.HEIGHT - 1) or xx not in range(0, self.world.WIDTH):
+            if yy not in range(0, self.world.HEIGHT) or xx not in range(0, self.world.WIDTH):
                 continue
             if self.world.map[xx][yy] is not None:
                 if self.world.map[xx][yy].strength <= self.strength:
                     self.move(xx, yy)
                     found = True
+                else:
+                    continue
             else:
                 self.move(xx, yy)
                 found = True
