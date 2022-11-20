@@ -3,11 +3,17 @@ import Organism
 
 
 class Animal(Organism.Organism):
+    defaultBreedCooldown = 20
+    breedCooldown = defaultBreedCooldown
     strenght = 0
     lifeSpan = 0
     breedChance: int
 
     def action(self):
+        if self.breedCooldown < self.defaultBreedCooldown:
+            self.breedCooldown -= 1
+        if self.breedCooldown <= 0:
+            self.breedCooldown = self.defaultBreedCooldown
         self.lifeSpan -= 1
         if self.lifeSpan == 0:
             self.world.map[self.x][self.y] = None
@@ -27,19 +33,23 @@ class Animal(Organism.Organism):
         pass
 
     def breed(self, attacker):
-        rand = random.randrange(1, 101)
-        if rand <= self.breedChance and self.lifeSpan <= self.defaultLifeSpan * 0.8:
-            f = self.GetNearestFree()
-            if f is not None:
-                x = f[0]
-                y = f[1]
-                self.report(str(type(self)).split(".")[-1].split("'")[0] + " created a child at " + str(self.x) + "," + str(self.y))
-                self.world.organisms.append(type(self)(self.x + x, self.y + y, self.world))
-                self.world.map[self.x + x][self.y + y] = self.world.organisms[-1]
+        if self.breedCooldown == self.defaultBreedCooldown:
+            rand = random.randrange(1, 101)
+            if rand <= self.breedChance and self.lifeSpan <= self.defaultLifeSpan * 0.8:
+                f = self.GetNearestFree()
+                if f is not None:
+                    x = f[0]
+                    y = f[1]
+                    self.report(str(type(self)).split(".")[-1].split("'")[0] + " created a child at " + str(self.x) + "," + str(self.y))
+                    self.breedCooldown -= 1
+                    self.world.organisms.append(type(self)(self.x + x, self.y + y, self.world))
+                    self.world.map[self.x + x][self.y + y] = self.world.organisms[-1]
+                else:
+                    self.report(str(type(self)).split(".")[-1].split("'")[0] + "'s child was obliterated at " + str(self.x) + "," + str(self.y))
             else:
-                self.report(str(type(self)).split(".")[-1].split("'")[0] + "'s child was obliterated at " + str(self.x) + "," + str(self.y))
+                self.report(str(type(self)).split(".")[-1].split("'")[0] + " got finessed at " + str(self.x) + "," + str(self.y))
         else:
-            self.report(str(type(self)).split(".")[-1].split("'")[0] + " got finessed at " + str(self.x) + "," + str(self.y))
+            print("cooldown")
 
     def __init__(self, x, y, world):
         self.x = x
