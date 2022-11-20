@@ -6,9 +6,14 @@ import Plant
 class WEED(Plant.Plant):
     strength = 1
     spreadChance = 20
+    defaultLifeSpan = 50
+    lifeSpan = defaultLifeSpan
 
     def currentImage(self):
-        return "resources/weed.png"
+        if self.defaultLifeSpan * 0.4 < self.lifeSpan:
+            return "resources/weed1.png"
+        else:
+            return "resources/weed2.png"
 
     def collision(self, attacker):
         if not isinstance(attacker, type(self)):

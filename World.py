@@ -40,7 +40,7 @@ class WORLD:
                     self.map[x][y] = Sheep.SHEEP(x, y, self)
                 elif 24 < rand < 39:
                     self.map[x][y] = Fox.FOX(x, y, self)
-                elif 39 <= rand < 50:
+                elif 39 <= rand < 45:
                     self.map[x][y] = Weed.WEED(x, y, self)
                 else:
                     self.map[x][y] = None

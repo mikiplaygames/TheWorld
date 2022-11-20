@@ -5,6 +5,7 @@ class Organism:
     image_path: str
     strength: int
     iniciative: int
+    lifeSpan = 0
     moveChance: int
     x: int
     y: int
