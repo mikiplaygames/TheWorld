@@ -29,7 +29,7 @@ class WORLD:
     def RandomizeWorld(self, w: int, h: int):
         self.WIDTH = w
         self.HEIGHT = h
-        self.map = [([Organism.Organism for x in range(w)]) for y in range(h)]
+        self.map = [([Organism.Organism for x in range(h)]) for y in range(w)]
 
         for x in range(0, w):
             for y in range(0, h):
