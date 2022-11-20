@@ -39,28 +39,38 @@ class MOUSE(Animal.Animal):
             attackName = str(type(attacker)).split(".")[-1].split("'")[0]
             defenseName = str(type(self)).split(".")[-1].split("'")[0]
             if self.strength > attacker.strength:
-                self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
                 self.world.map[attacker.x][attacker.y] = None
                 self.world.map[self.x][self.y] = None
                 self.x = attacker.x
                 self.y = attacker.y
+                self.world.map[self.x][self.y] = self
                 if attacker in self.world.organisms:
-                    consumed = False
-                    if isinstance(attacker, Coke.COKE):
-                        self.queueAction = True
-                        self.report(defenseName + " consumed " + attackName + " at " + str(self.x) + "," + str(self.y))
-                        consumed = True
-                    self.world.map[self.x][self.y] = self
-                    if attacker in self.world.organisms:
-                        self.world.organisms.remove(attacker)
-                    if consumed == False:
-                        self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
-                    del attacker
+                    self.world.organisms.remove(attacker)
+
+                consumed = False
+                if isinstance(attacker, Coke.COKE):
+                    self.queueAction = True
+                    self.report(defenseName + " consumed " + attackName + " at " + str(self.x) + "," + str(self.y))
+                    consumed = True
+                if consumed == False:
+                    self.report(defenseName + " devoured " + attackName + " at " + str(self.x) + "," + str(self.y))
+
+                del attacker
+
 
             else:
-                self.report(attackName + " devoured " + defenseName + " at " + str(self.x) + "," + str(self.y))
-                self.world.map[self.x][self.y] = None
-                self.world.organisms.remove(self)
-                del self
+                f = self.GetNearestFree()
+                if f is not None:
+                    self.world.map[self.x][self.y] = None
+                    self.x += f[0]
+                    self.y += f[1]
+                    self.world.map[self.x][self.y] = self
+                    self.report(defenseName + " escaped " + attackName + " to " + str(self.x) + "," + str(self.y))
+                else:
+                    self.report(attackName + " devoured " + defenseName + " at " + str(self.x) + "," + str(self.y))
+                    self.world.map[self.x][self.y] = None
+                    self.world.organisms.remove(self)
+                    del self
+                    return
         elif attacker != self:
             self.breed(attacker)

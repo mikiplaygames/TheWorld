@@ -11,6 +11,7 @@ class THEWORLD:
     HEIGHT = 24
     textureSize = 32
     logBoxSize = 400
+    bgColor = '#95b84b'
 
     theWorld = World.WORLD()
     theWorld.RandomizeWorld(WIDTH, HEIGHT)
@@ -22,12 +23,12 @@ class THEWORLD:
     s_height = textureSize * HEIGHT
     screen = pygame.display.set_mode((s_width, s_height))
     # screen.blit(pygame.image.load('resources/bg.png'), (0, 0))
-    screen.fill('#95b84b')
+    screen.fill(bgColor)
     font = pygame.font.SysFont('Arial', 20)
 
     def draw(self):
         self.screen.fill(0)
-        self.screen.fill('#95b84b')
+        self.screen.fill(self.bgColor)
         self.screen.fill('#000000', pygame.Rect(self.s_width - self.logBoxSize, 0, self.logBoxSize, self.s_height))
         # self.screen.blit(pygame.image.load('resources/bg.png'), (0, 0))
         for i in self.theWorld.organisms:

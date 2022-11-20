@@ -48,8 +48,6 @@ class Animal(Organism.Organism):
                     self.report(str(type(self)).split(".")[-1].split("'")[0] + "'s child was obliterated at " + str(self.x) + "," + str(self.y))
             else:
                 self.report(str(type(self)).split(".")[-1].split("'")[0] + " got finessed at " + str(self.x) + "," + str(self.y))
-        else:
-            print("cooldown")
 
     def __init__(self, x, y, world):
         self.x = x
