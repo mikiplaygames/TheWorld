@@ -6,6 +6,7 @@ import Plants.Coke as Coke
 class SNAIL(Animal.Animal):
     strength = 3
     defaultLifeSpan = 120
+    iniciative = 1
     lifeSpan = defaultLifeSpan
     moveChance = 10
     breedChance = 100

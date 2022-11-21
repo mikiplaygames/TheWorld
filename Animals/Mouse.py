@@ -6,6 +6,7 @@ import Plants.Coke as Coke
 class MOUSE(Animal.Animal):
     strength = 2
     defaultLifeSpan = 40
+    iniciative = 3
     lifeSpan = defaultLifeSpan
     moveChance = 90
     breedChance = 50

@@ -6,6 +6,7 @@ import Plant
 class WEED(Plant.Plant):
     strength = 1
     spreadChance = 20
+    iniciative = 0
     defaultLifeSpan = 50
     lifeSpan = defaultLifeSpan
 

@@ -23,9 +23,17 @@ class WORLD:
     map = []
 
     def NextRound(self):
+        self.organisms.sort(key=lambda x: x.iniciative, reverse=True)
         for i in self.organisms:
             if i is not None:
                 i.action()
+
+    def Summon(self, org, posX: int, posY: int):
+
+        self.map[posX][posY] = org
+        self.organisms.append(self.map[posX][posY])
+
+        self.log += "Summoned " + str(type(self.map[posX][posY])).split(".")[-1].split("'")[0] + "|"
 
     def RandomizeWorld(self, w: int, h: int):
         self.WIDTH = w
@@ -38,7 +46,7 @@ class WORLD:
 
         for x in range(0, w):
             for y in range(0, h):
-                rand = random.randrange(0, 500)
+                rand = random.randrange(0, 600)
                 if rand < 25:
                     self.map[x][y] = Sheep.SHEEP(x, y, self)
                 elif 24 < rand < 30:
@@ -53,4 +61,6 @@ class WORLD:
                     self.map[x][y] = Coke.COKE(x, y, self)
                 else:
                     self.map[x][y] = None
-                self.organisms.append(self.map[x][y])
+
+                if self.map[x][y] is not None:
+                    self.organisms.append(self.map[x][y])

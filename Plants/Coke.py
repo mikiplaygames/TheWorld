@@ -6,6 +6,7 @@ import Plant
 class COKE(Plant.Plant):
     strength = 0
     spreadChance = 10
+    iniciative = 0
     defaultLifeSpan = 60
     lifeSpan = defaultLifeSpan
 
